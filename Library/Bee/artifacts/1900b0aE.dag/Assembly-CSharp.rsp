@@ -354,6 +354,7 @@
 "Assets/Scripts/Player Scripts/PlayerCam.cs"
 "Assets/Scripts/Player Scripts/PlayerMovementAdvanced.cs"
 "Assets/Scripts/Player Scripts/Sliding.cs"
+"Assets/Scripts/ProjectileController.cs"
 -langversion:9.0
 
 /deterministic
