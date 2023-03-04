@@ -8,7 +8,6 @@ public class ProjectileController : MonoBehaviour
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
-    public GameObject throwObject;
     private ThrowableHolding throwableHoldingScript;
 
     [Header("Settings")]
