@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8418885108249170206, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -7751538096589871859, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -70,6 +74,14 @@ PrefabInstance:
     - target: {fileID: -7751538096589871859, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5820789934909863198, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3416427189533854199, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -672285583750965778, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -92,8 +104,24 @@ PrefabInstance:
       value: Disc Pickup
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
       propertyPath: m_TagString
       value: ProjectilePickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268183560238334890, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389304254797006233, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944925108461359583, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8121594497037681873, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110,20 +138,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
   m_PrefabInstance: {fileID: 4019554649307827375}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &6914024751050794821
-MeshCollider:
+--- !u!135 &4448094432427584937
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4253995618005840382}
-  m_Material: {fileID: 13400000, guid: f4be59b6a8b3bbd41b3939064a39db40, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8122214729794344124, guid: e6781b91ab3702f48ace7297d44cfa5e, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8603282665845681284
 MonoBehaviour:
   m_ObjectHideFlags: 0

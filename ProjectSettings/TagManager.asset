@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - ProjectilePickup
   - Pusher
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
+  - Projectile
+  - ProjectileEnemy
+  - Enemy
   - 
   - 
   - 

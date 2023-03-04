@@ -358,6 +358,7 @@
 "Assets/Scripts/Player Scripts/Sliding.cs"
 "Assets/Scripts/PusherController.cs"
 "Assets/Scripts/Robot Scripts/RobotController.cs"
+"Assets/Scripts/Robot Scripts/RobotProjectileController.cs"
 "Assets/Scripts/ThrowableHolding.cs"
 -langversion:9.0
 
