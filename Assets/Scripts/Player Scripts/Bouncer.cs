@@ -5,19 +5,20 @@ using UnityEngine;
 public class Bouncer : MonoBehaviour
 {
     [Header("Launch Variables")]
-    public float bounceForce = 10f; // variable for bounce force
-    public float angle = 90f;
-    private Vector3 normalizedOrientation;
+    public float bounceForce = 30f; // variable for bounce force
     private float hitForce;
     private float maxReboundForce = 15f;
 
     [Header("Object Info")]
     public Transform orientation; // public transform variable to save the player's orientation
     private Rigidbody rb;
+    private PlayerMovementAdvanced playerScript;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        playerScript = gameObject.GetComponent<PlayerMovementAdvanced>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,14 +26,14 @@ public class Bouncer : MonoBehaviour
         // detect collision between the player and bouncer
         if (collision.gameObject.CompareTag("Bouncer") && collision.gameObject.transform.position.y < orientation.position.y)
         {
+            playerScript.UsedBouncer();
             hitForce = collision.impulse.magnitude;
+
             if(hitForce > maxReboundForce) hitForce = maxReboundForce;
-
-            normalizedOrientation = orientation.forward.normalized;
             Debug.Log(hitForce);
-            Vector3 direction = Vector3.Slerp(normalizedOrientation, Vector3.up, angle / 90f);
 
-            rb.AddForce(direction * (bounceForce + (hitForce / 3)), ForceMode.Impulse);
+            rb.AddForce(Vector3.up * (bounceForce + (hitForce / 3)), ForceMode.Impulse);
+            
         }
     }
 }

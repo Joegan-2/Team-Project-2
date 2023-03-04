@@ -48,6 +48,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public LayerMask whatIsGround;
     public bool grounded;
 
+    [Header("Bouncer Check")]
+    public bool usedBouncer;
+
     [Header("Slope Handling")]
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
@@ -102,7 +105,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         // handle drag
         if (grounded)
-            rb.drag = groundDrag;
+            {
+                rb.drag = groundDrag;
+                usedBouncer = false;
+            }
         else
             rb.drag = 0;
         
@@ -117,9 +123,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(jumpKey))
+        else if (rb.velocity.y > 0 && !Input.GetKey(jumpKey) || usedBouncer)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            
         }
     }
 
@@ -337,5 +344,10 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    public void UsedBouncer()
+    {
+        usedBouncer = true;
     }
 }
