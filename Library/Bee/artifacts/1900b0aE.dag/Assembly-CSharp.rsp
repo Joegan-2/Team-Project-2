@@ -356,6 +356,7 @@
 "Assets/Scripts/Player Scripts/PlayerMovementAdvanced.cs"
 "Assets/Scripts/Player Scripts/ProjectileController.cs"
 "Assets/Scripts/Player Scripts/Sliding.cs"
+"Assets/Scripts/PusherController.cs"
 "Assets/Scripts/ThrowableHolding.cs"
 -langversion:9.0
 

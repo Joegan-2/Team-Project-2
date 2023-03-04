@@ -5,7 +5,8 @@ using UnityEngine;
 public class Bouncer : MonoBehaviour
 {
     [Header("Launch Variables")]
-    public float bounceForce = 30f; // variable for bounce force
+    public float bounceForce = 30f; // variable for bouncer force
+    public float pushForce= 30f; // variable for pusher force
     private float hitForce;
     private float maxReboundForce = 15f;
 
@@ -30,10 +31,16 @@ public class Bouncer : MonoBehaviour
             hitForce = collision.impulse.magnitude;
 
             if(hitForce > maxReboundForce) hitForce = maxReboundForce;
-            Debug.Log(hitForce);
 
             rb.AddForce(Vector3.up * (bounceForce + (hitForce / 3)), ForceMode.Impulse);
             
+        }
+
+        else if (collision.gameObject.CompareTag("Pusher"))
+        {
+            Vector3 direction = collision.gameObject.transform.up;
+
+            rb.AddForce(direction * pushForce, ForceMode.Impulse);
         }
     }
 }
