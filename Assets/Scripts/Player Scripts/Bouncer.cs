@@ -7,6 +7,7 @@ public class Bouncer : MonoBehaviour
     [Header("Launch Variables")]
     public float bounceForce = 30f; // variable for bouncer force
     public float pushForce= 30f; // variable for pusher force
+    public float enemyPushForce = 30f; //projectile knockback force
 
 
     [Header("Object Info")]
@@ -31,12 +32,19 @@ public class Bouncer : MonoBehaviour
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             
         }
-
         else if (collision.gameObject.CompareTag("Pusher"))
         {
             Vector3 direction = collision.gameObject.transform.up;
 
             rb.AddForce(direction * pushForce, ForceMode.Impulse);
+        }
+        else if(collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            Debug.Log("Hit");
+            Vector3 direction = collision.contacts[0].point - (Vector3)transform.position;
+            direction = -direction.normalized;
+            rb.AddForce(direction * enemyPushForce, ForceMode.Impulse);
+            Destroy(collision.gameObject);
         }
     }
 }

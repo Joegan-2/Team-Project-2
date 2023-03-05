@@ -26,7 +26,6 @@ public class ProjectileController : MonoBehaviour
     {
         readyToThrow = false;
         throwableHoldingScript = attackPoint.gameObject.GetComponent<ThrowableHolding>();
-
     }
 
     private void Update()
@@ -78,8 +77,6 @@ public class ProjectileController : MonoBehaviour
                 readyToThrow = true;
                 Destroy(collision.gameObject);
             }
-            
-
         }
     }
 }
