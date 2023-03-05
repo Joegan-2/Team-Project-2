@@ -29,6 +29,7 @@ public class RobotProjectileController : MonoBehaviour
     void Awake()
     {
         robotController = Robot.GetComponent<RobotController>();
+        SFX = Robot.GetComponent<AudioSource>();
     }
 
     private void Update()

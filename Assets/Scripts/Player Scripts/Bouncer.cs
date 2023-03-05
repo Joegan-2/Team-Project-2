@@ -27,9 +27,10 @@ public class Bouncer : MonoBehaviour
         // detect collision between the player and bouncer
         if (collision.gameObject.CompareTag("Bouncer") && collision.gameObject.transform.position.y < orientation.position.y)
         {
+            rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             playerScript.UsedBouncer();
 
-            rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+            
             
         }
         else if (collision.gameObject.CompareTag("Pusher"))
