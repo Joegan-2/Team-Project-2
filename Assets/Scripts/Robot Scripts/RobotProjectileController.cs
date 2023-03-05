@@ -8,7 +8,14 @@ public class RobotProjectileController : MonoBehaviour
     public Transform attackPoint;
     public GameObject objectToThrow;
     public Transform player;
+    public GameObject playerGO;
+    public GameObject Robot;
+    RobotController robotController;
+    ProjectileController playerController;
 
+    public AudioSource SFX;
+    public AudioClip LaunchSFX;
+    public AudioClip StunnedSFX;
     [Header("Throwing")]
     public float throwForce; //how hard horizontally the object is thrown
     public float throwUpwardForce; // how much vertical force is applied
@@ -18,31 +25,24 @@ public class RobotProjectileController : MonoBehaviour
     [Header("Rotation")]
     float rotationSpeed = 10f;
 
-    public GameObject Robot;
-    RobotController robotController;
 
-    public AudioSource SFX;
-    public AudioClip LaunchSFX;
-    public AudioClip StunnedSFX;
 
 
     void Awake()
     {
         robotController = Robot.GetComponent<RobotController>();
+        playerController = playerGO.GetComponent<ProjectileController>();
         SFX = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (robotController.IsStunned == false)
-        {
-            LookAtTarget();
-        }
+        LookAtTarget();
     }
 
     private void Throw()
     {
-        if (robotController.IsStunned == false)
+        if (robotController.IsStunned == false || playerController.isSafe == false)
         {
             GameObject projectile = Instantiate(objectToThrow, attackPoint.position, transform.rotation); //summons the projectile at the spawn point
 
@@ -76,7 +76,7 @@ public class RobotProjectileController : MonoBehaviour
 
     private void LookAtTarget()
     {
-        if (robotController.IsStunned == false)
+        if (robotController.IsStunned == false || playerController.isSafe == false)
         {
             // Calculate the direction towards the player
             Vector3 direction = player.position - transform.position;

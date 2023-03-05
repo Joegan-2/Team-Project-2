@@ -226,9 +226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32dfacf09d346bf48a90fb94566e5e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerMin: 10
+  timerMin: 2
   timerMax: 5
-  pushDistance: 10
-  pushSpeed: 15
+  pushDistance: 7.5
+  pushSpeed: 10
   retractSpeed: 10
   timeExtended: 2

@@ -13,6 +13,7 @@ public class ProjectileController : MonoBehaviour
 
     [Header("Settings")]
     public int totalThrows = 0; //how many pickups the object is throwing (right now it can only hold one, so this value should never go over 1)
+    public bool isSafe;
 
     [Header("Throwing")]
     public KeyCode throwKey = KeyCode.Mouse0; //button to throw the projectile
@@ -76,6 +77,18 @@ public class ProjectileController : MonoBehaviour
                 readyToThrow = true;
                 Destroy(collision.gameObject);
             }
+        }
+        if(collision.gameObject.CompareTag("SafeZone"))
+        {
+            isSafe = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+                if(collision.gameObject.CompareTag("SafeZone"))
+        {
+            isSafe = false;
         }
     }
 }
