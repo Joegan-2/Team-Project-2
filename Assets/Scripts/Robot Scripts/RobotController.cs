@@ -9,7 +9,7 @@ public class RobotController : MonoBehaviour
     [SerializeField] private Transform movePositionTransform;
     private NavMeshAgent navMeshAgent;
 
-    public bool IsStunned = true;
+    public bool IsStunned = false;
 
     private void Awake()
     {

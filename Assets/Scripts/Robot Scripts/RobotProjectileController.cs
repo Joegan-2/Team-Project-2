@@ -22,21 +22,21 @@ public class RobotProjectileController : MonoBehaviour
     RobotController robotController;
 
     public AudioSource SFX;
-    public AudioClip[] LaunchSFX;
+    public AudioClip LaunchSFX;
     public AudioClip StunnedSFX;
 
 
     void Awake()
     {
         robotController = Robot.GetComponent<RobotController>();
-        SFX = Robot.GetComponent<AudioSource>();
+        SFX = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if (robotController.IsStunned == false)
         {
-        LookAtTarget();
+            LookAtTarget();
         }
     }
 
@@ -44,17 +44,17 @@ public class RobotProjectileController : MonoBehaviour
     {
         if (robotController.IsStunned == false)
         {
-        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, transform.rotation); //summons the projectile at the spawn point
+            GameObject projectile = Instantiate(objectToThrow, attackPoint.position, transform.rotation); //summons the projectile at the spawn point
 
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-        Vector3 forceToAdd = transform.forward * throwForce + transform.up * throwUpwardForce;
+            Vector3 forceToAdd = transform.forward * throwForce + transform.up * throwUpwardForce;
 
-        projectileRb.AddForce(forceToAdd, ForceMode.Impulse); //pushes the disc 
+            projectileRb.AddForce(forceToAdd, ForceMode.Impulse); //pushes the disc 
 
-        SFX.PlayOneShot(LaunchSFX[Random.Range(0,LaunchSFX.Length)]);
+            SFX.PlayOneShot(LaunchSFX);
 
-        StartCoroutine(Timer());
+            StartCoroutine(Timer());
         }
     }
     
@@ -67,8 +67,10 @@ public class RobotProjectileController : MonoBehaviour
 
     IEnumerator StunCooldown()
     {
+        Debug.Log(robotController.IsStunned);
         yield return new WaitForSeconds(cooldown);
         robotController.IsStunned = false;
+        Debug.Log(robotController.IsStunned);
         StartCoroutine(Timer());
     }
 
@@ -76,14 +78,14 @@ public class RobotProjectileController : MonoBehaviour
     {
         if (robotController.IsStunned == false)
         {
-        // Calculate the direction towards the player
-        Vector3 direction = player.position - transform.position;
+            // Calculate the direction towards the player
+            Vector3 direction = player.position - transform.position;
 
-        // Calculate the rotation needed to look at the player
-        Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            // Calculate the rotation needed to look at the player
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
 
-        // Smoothly rotate the object towards the target rotation
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            // Smoothly rotate the object towards the target rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
 
@@ -99,7 +101,7 @@ public class RobotProjectileController : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void Start()
     {
         StartCoroutine(Timer());
         robotController.IsStunned = false;

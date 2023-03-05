@@ -72,6 +72,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     Rigidbody rb;
 
+    private AudioSource SFX;
+    public AudioClip bounce1, bounce2, bounce3;
+
+
+
     public MovementState state;
     public enum MovementState
     {
@@ -84,12 +89,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool sliding;
 
-    public AudioSource SFX;
-    public AudioClip[] BounceSFX;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        SFX = GetComponent<AudioSource>();
         rb.freezeRotation = true;
 
         readyToJump = true;
@@ -352,6 +357,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public void UsedBouncer()
     {
         usedBouncer = true;
-        SFX.PlayOneShot(BounceSFX[Random.Range(0,BounceSFX.Length)]);
+
+        int randomNum = Random.Range(1, 4);
+
+        if(randomNum == 1) SFX.PlayOneShot(bounce1);
+        else if(randomNum == 2) SFX.PlayOneShot(bounce2);
+        else if(randomNum == 3) SFX.PlayOneShot(bounce3);
     }
 }

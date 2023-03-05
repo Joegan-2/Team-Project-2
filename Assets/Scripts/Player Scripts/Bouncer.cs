@@ -29,9 +29,6 @@ public class Bouncer : MonoBehaviour
         {
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             playerScript.UsedBouncer();
-
-            
-            
         }
         else if (collision.gameObject.CompareTag("Pusher"))
         {
