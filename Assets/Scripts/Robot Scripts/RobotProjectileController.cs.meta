@@ -3,7 +3,14 @@ guid: 27e2f249639e40b448aa2e049d3b5f53
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - attackPoint: {instanceID: 0}
+  - objectToThrow: {instanceID: 0}
+  - player: {instanceID: 0}
+  - Robot: {instanceID: 0}
+  - SFX: {instanceID: 0}
+  - LaunchSFX: {instanceID: 0}
+  - StunnedSFX: {fileID: 8300000, guid: de0607ad1c356414987b28f5f3fd6119, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
