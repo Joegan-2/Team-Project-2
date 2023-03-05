@@ -9,6 +9,8 @@ TagManager:
   - ProjectilePickup
   - Pusher
   - EnemyProjectile
+  - WIN
+  - LOSE
   layers:
   - Default
   - TransparentFX
