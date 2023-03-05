@@ -84,6 +84,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     public bool sliding;
 
+    public AudioSource SFX;
+    public AudioClip[] BounceSFX;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -349,5 +352,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public void UsedBouncer()
     {
         usedBouncer = true;
+        SFX.PlayOneShot(BounceSFX[Random.Range(0,BounceSFX.Length)]);
     }
 }

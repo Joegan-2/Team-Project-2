@@ -13,22 +13,36 @@ public class RobotProjectileController : MonoBehaviour
     public float throwForce; //how hard horizontally the object is thrown
     public float throwUpwardForce; // how much vertical force is applied
     public float timer = 4f;
+    public float cooldown = 3f;
 
     [Header("Rotation")]
     float rotationSpeed = 10f;
 
-    void Start()
+    public GameObject Robot;
+    RobotController robotController;
+
+    public AudioSource SFX;
+    public AudioClip[] LaunchSFX;
+    public AudioClip StunnedSFX;
+
+
+    void Awake()
     {
-        StartCoroutine(Timer());
+        robotController = Robot.GetComponent<RobotController>();
     }
 
     private void Update()
     {
+        if (robotController.IsStunned == false)
+        {
         LookAtTarget();
+        }
     }
 
     private void Throw()
     {
+        if (robotController.IsStunned == false)
+        {
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, transform.rotation); //summons the projectile at the spawn point
 
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
@@ -37,7 +51,10 @@ public class RobotProjectileController : MonoBehaviour
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse); //pushes the disc 
 
+        SFX.PlayOneShot(LaunchSFX[Random.Range(0,LaunchSFX.Length)]);
+
         StartCoroutine(Timer());
+        }
     }
     
     IEnumerator Timer()
@@ -47,8 +64,17 @@ public class RobotProjectileController : MonoBehaviour
         Throw();
     }
 
+    IEnumerator StunCooldown()
+    {
+        yield return new WaitForSeconds(cooldown);
+        robotController.IsStunned = false;
+        StartCoroutine(Timer());
+    }
+
     private void LookAtTarget()
     {
+        if (robotController.IsStunned == false)
+        {
         // Calculate the direction towards the player
         Vector3 direction = player.position - transform.position;
 
@@ -57,5 +83,24 @@ public class RobotProjectileController : MonoBehaviour
 
         // Smoothly rotate the object towards the target rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.gameObject.CompareTag("Projectile"))
+        {
+            robotController.IsStunned = true;
+            SFX.PlayOneShot(StunnedSFX);
+            StartCoroutine(StunCooldown());
+            StopCoroutine(Timer());
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(Timer());
+        robotController.IsStunned = false;
     }
 }

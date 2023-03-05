@@ -9,6 +9,8 @@ public class RobotController : MonoBehaviour
     [SerializeField] private Transform movePositionTransform;
     private NavMeshAgent navMeshAgent;
 
+    public bool IsStunned = true;
+
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -16,6 +18,12 @@ public class RobotController : MonoBehaviour
 
     private void Update()
     {
+        if (IsStunned == false)
+        {
+        gameObject.GetComponent<NavMeshAgent>().isStopped = false;
         navMeshAgent.destination = movePositionTransform.position;
+        } else {
+        gameObject.GetComponent<NavMeshAgent>().isStopped = true;    
+        }
     }
 }

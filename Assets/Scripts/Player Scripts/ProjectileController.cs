@@ -21,7 +21,6 @@ public class ProjectileController : MonoBehaviour
 
     private bool readyToThrow;
 
-
     private void Start()
     {
         readyToThrow = false;

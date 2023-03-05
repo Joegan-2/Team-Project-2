@@ -3,7 +3,12 @@ guid: c15ccd434bb23a74fa9788b3e9f4cf3c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rubberball_shader
+    second: {fileID: 2100000, guid: a7f41b404e668534cbb53010cf58dcba, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
