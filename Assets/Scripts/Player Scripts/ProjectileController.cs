@@ -21,11 +21,14 @@ public class ProjectileController : MonoBehaviour
     public float throwUpwardForce; // how much vertical force is applied
 
     private bool readyToThrow;
+    private AudioSource SFX;
+    public AudioClip LaunchSFX;
 
     private void Start()
     {
         readyToThrow = false;
         throwableHoldingScript = attackPoint.gameObject.GetComponent<ThrowableHolding>();
+        SFX = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -46,7 +49,7 @@ public class ProjectileController : MonoBehaviour
 
         Vector3 forceDirection = cam.transform.forward; //sets the direction the object will be pushed
         RaycastHit hit; 
-
+        SFX.PlayOneShot(LaunchSFX);
 
         //the next few lines "calculate a triangle", because the object is summoned to the side of the player, it will be shot off center (which is bade). This sends a raycast directly in front of a player.
         //wherever it hits is where the line ends. It then "creates a triangle" based on the spawn point of the projectile and the beggining and end of the raycast. It then determines what force is requierd to
