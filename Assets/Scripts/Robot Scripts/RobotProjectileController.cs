@@ -21,6 +21,7 @@ public class RobotProjectileController : MonoBehaviour
     public float throwUpwardForce; // how much vertical force is applied
     public float timer = 4f;
     public float cooldown = 3f;
+    public bool canShoot;
 
     [Header("Rotation")]
     float rotationSpeed = 10f;
@@ -33,16 +34,31 @@ public class RobotProjectileController : MonoBehaviour
         robotController = Robot.GetComponent<RobotController>();
         playerController = playerGO.GetComponent<ProjectileController>();
         SFX = GetComponent<AudioSource>();
+        transform.localScale = Vector3.one;
     }
 
     private void Update()
     {
+<<<<<<< Updated upstream
+=======
+        if (robotController.IsStunned == false && robotController.isSafe == false)
+        {
+            canShoot = true;
+        }
+        else{
+            canShoot = false;
+        }
+>>>>>>> Stashed changes
         LookAtTarget();
     }
 
     private void Throw()
     {
+<<<<<<< Updated upstream
         if (robotController.IsStunned == false || playerController.isSafe == false)
+=======
+        if (canShoot)
+>>>>>>> Stashed changes
         {
             GameObject projectile = Instantiate(objectToThrow, attackPoint.position, transform.rotation); //summons the projectile at the spawn point
 
@@ -70,13 +86,18 @@ public class RobotProjectileController : MonoBehaviour
         Debug.Log(robotController.IsStunned);
         yield return new WaitForSeconds(cooldown);
         robotController.IsStunned = false;
+        canShoot = true;
         Debug.Log(robotController.IsStunned);
-        StartCoroutine(Timer());
+        Throw();
     }
 
     private void LookAtTarget()
     {
+<<<<<<< Updated upstream
         if (robotController.IsStunned == false || playerController.isSafe == false)
+=======
+        if (canShoot)
+>>>>>>> Stashed changes
         {
             // Calculate the direction towards the player
             Vector3 direction = player.position - transform.position;
@@ -86,6 +107,7 @@ public class RobotProjectileController : MonoBehaviour
 
             // Smoothly rotate the object towards the target rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            //transform.Rotate(new Vector3(0f, -90f, 0f));
         }
     }
 

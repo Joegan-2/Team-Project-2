@@ -81,15 +81,25 @@ public class ProjectileController : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+<<<<<<< Updated upstream
         if(collision.gameObject.CompareTag("SafeZone"))
+=======
+        else if (collision.gameObject.CompareTag("SafeZone")) //handles picking up the projectile 
+>>>>>>> Stashed changes
         {
             isSafe = true;
         }
     }
+<<<<<<< Updated upstream
 
     private void OnTriggerExit(Collider collision)
     {
                 if(collision.gameObject.CompareTag("SafeZone"))
+=======
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("SafeZone")) //handles picking up the projectile 
+>>>>>>> Stashed changes
         {
             isSafe = false;
         }
