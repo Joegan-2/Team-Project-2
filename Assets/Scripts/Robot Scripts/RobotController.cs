@@ -10,15 +10,18 @@ public class RobotController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
 
     public bool IsStunned = false;
+    public GameObject player;
+    ProjectileController playerController;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        playerController = player.GetComponent<ProjectileController>();
     }
 
     private void Update()
     {
-        if (IsStunned == false)
+        if (IsStunned == false && playerController.isSafe == false)
         {
         gameObject.GetComponent<NavMeshAgent>().isStopped = false;
         navMeshAgent.destination = movePositionTransform.position;

@@ -11,6 +11,7 @@ TagManager:
   - EnemyProjectile
   - WIN
   - LOSE
+  - SafeZone
   layers:
   - Default
   - TransparentFX
